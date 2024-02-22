@@ -2,6 +2,7 @@
 const express = require("express");
 // создаем объект приложения
 const app = express();
+const port = 3000;
 
 const data = [
     {
@@ -23,4 +24,4 @@ app.get("/data", function(request, response){
     response.send(JSON.stringify(data));
 });
 // начинаем прослушивать подключения на 3000 порту
-app.listen(3000);
+app.listen(port, ()=> console.log(`server start to port: ${port}`));
