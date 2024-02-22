@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h2>Привет Express!</h2>
+    <ol>
+        <li>create rep github</li>
+        <li>install git to server</li>
+        <li>git clone vps_server</li>
+        <li>install node to server</li>
+        <li>install npm to server</li>
+        <li>install nginx to server</li>
+        <li>backup /etc/nginx/sites-available/default to /etc/nginx/sites-available/bk.default</li>
+        <li>
+             edit /etc/nginx/sites-available/default add:
+             <p>
+                <pre>
+                    location / {
+                        proxy_pass http://localhost:3000;
+                        proxy_http_version 1.1;
+                        proxy_set_header Upgrade $http_upgrade;
+                        proxy_set_header Connection 'upgrade';
+                        proxy_set_header Host $host;
+                        proxy_cache_bypass $http_upgrade;
+                    }
+                </pre>
+            </p>
+        </li>
+        <li>cd ~/opt/vps_nodejs/</li>
+        <li>test: node server.js</li>
+        <li>sudo npm install pm2 -g (auto start node server)</li>
+        <li>sudo pm2 start server.js</li>
+    </ol>
+</body>
+</html>

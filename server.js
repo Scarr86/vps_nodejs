@@ -1,5 +1,6 @@
 // подключение express
 const express = require("express");
+const path = require('path')
 // создаем объект приложения
 const app = express();
 const port = 3000;
@@ -16,9 +17,10 @@ const data = [
 ];
 
 
+app.use(express.static(__dirname));
 // определяем обработчик для маршрута "/"
 app.get("/", function(request, response){
-    response.send("<h2>Привет Express!</h2>");
+    response.sendFile(path.join(__dirname));
 });
 app.get("/data", function(request, response){
     response.send(JSON.stringify(data));
